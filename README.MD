@@ -39,3 +39,11 @@ Your Choice: 1
 
 Enter the side length: 5
 Square Area: 25.0
+
+## Repository Structure
+ShapeCalculator/
+│
+├── shape_calculator.py   # Main program file
+├── README.md             # Project description
+└── example_output.txt    # Sample outputs
+
