@@ -12,44 +12,61 @@ def kalkulator_bangun_datar():
     print("7. Belah Ketupat")
     print("8. Layang-Layang")
     
-    operasi = int(input("\nPilih operasi (1-8): "))
+    try:
+        operasi = int(input("\nPilih operasi (1-8): "))
 
-    if operasi == 1:
-        sisi = float(input("Masukkan panjang sisi: "))
-        print(f"Luas Persegi: {luas_persegi(sisi)}")
+        if operasi == 1:
+            sisi = float(input("Masukkan panjang sisi: "))
+            print(f"Luas Persegi: {luas_persegi(sisi)}")
 
-    elif operasi == 2:
-        panjang = float(input("Masukkan panjang: "))
-        lebar = float(input("Masukkan lebar: "))
-        print(f"Luas Persegi Panjang: {luas_persegi_panjang(panjang, lebar)}")
+        elif operasi == 2:
+            panjang = float(input("Masukkan panjang: "))
+            lebar = float(input("Masukkan lebar: "))
+            print(f"Luas Persegi Panjang: {luas_persegi_panjang(panjang, lebar)}")
 
-    elif operasi == 3:
-        alas = float(input("Masukkan panjang alas: "))
-        tinggi = float(input("Masukkan tinggi: "))
-        print(f"Luas Segitiga: {luas_segitiga(alas, tinggi)}")
+        elif operasi == 3:
+            alas = float(input("Masukkan panjang alas: "))
+            tinggi = float(input("Masukkan tinggi: "))
+            print(f"Luas Segitiga: {luas_segitiga(alas, tinggi)}")
 
-    elif operasi == 4:
-        alas = float(input("Masukkan panjang alas: "))
-        tinggi = float(input("Masukkan tinggi: "))
-        print(f"Luas Jajar Genjang: {luas_jajar_genjang(alas, tinggi)}")
+        elif operasi == 4:
+            alas = float(input("Masukkan panjang alas: "))
+            tinggi = float(input("Masukkan tinggi: "))
+            print(f"Luas Jajar Genjang: {luas_jajar_genjang(alas, tinggi)}")
 
-    elif operasi == 5:
-        jari_jari = float(input("Masukkan jari-jari: "))
-        print(f"Luas Lingkaran: {luas_lingkaran(jari_jari)}")
+        elif operasi == 5:
+            jari_jari = float(input("Masukkan jari-jari: "))
+            print(f"Luas Lingkaran: {luas_lingkaran(jari_jari)}")
 
-    elif operasi == 6:
-        sisi_atas = float(input("Masukkan panjang sisi atas: "))
-        sisi_bawah = float(input("Masukkan panjang sisi bawah: "))
-        tinggi = float(input("Masukkan tinggi: "))
-        print(f"Luas Trapesium: {luas_trapesium(sisi_atas, sisi_bawah, tinggi)}")
+        elif operasi == 6:
+            sisi_atas = float(input("Masukkan panjang sisi atas: "))
+            sisi_bawah = float(input("Masukkan panjang sisi bawah: "))
+            tinggi = float(input("Masukkan tinggi: "))
+            if tinggi == 0 or (sisi_atas + sisi_bawah) == 0:
+                raise ZeroDivisionError("Tinggi atau jumlah sisi tidak boleh nol.")
+            print(f"Luas Trapesium: {luas_trapesium(sisi_atas, sisi_bawah, tinggi)}")
 
-    elif operasi == 7 or operasi == 8:
-        diagonal1 = float(input("Masukkan panjang diagonal pertama: "))
-        diagonal2 = float(input("Masukkan panjang diagonal kedua: "))
-        print(f"Luas Bangun: {luas_diagonal(diagonal1, diagonal2)}")
+        elif operasi == 7:
+            diagonal1 = float(input("Masukkan panjang diagonal pertama: "))
+            diagonal2 = float(input("Masukkan panjang diagonal kedua: "))
+            if diagonal1 == 0 or diagonal2 == 0:
+                raise ZeroDivisionError("Diagonal tidak boleh nol.")
+            print(f"Luas Belah Ketupat: {luas_diagonal(diagonal1, diagonal2)}")
 
-    else:
-        print("Operasi tidak valid!")
+        elif operasi == 8:
+            diagonal1 = float(input("Masukkan panjang diagonal pertama: "))
+            diagonal2 = float(input("Masukkan panjang diagonal kedua: "))
+            if diagonal1 == 0 or diagonal2 == 0:
+                raise ZeroDivisionError("Diagonal tidak boleh nol.")
+            print(f"Luas Layang-layang: {luas_diagonal(diagonal1, diagonal2)}")
+
+        else:
+            print("Operasi tidak valid!")
+
+    except ZeroDivisionError:
+        print("Error")
+    except ValueError:
+        print("Input harus berupa angka!")
 
 def kalkulator_bangun_ruang():
     print("\nOperasi Bangun Ruang:")
@@ -105,11 +122,14 @@ print('''Pilih Kategori:
       1. Bangun Datar
       2. Bangun Ruang''')
 
-kategori = int(input("Pilihanmu: "))
+try:
+    kategori = int(input("Pilihanmu: "))
 
-if kategori == 1:
-    kalkulator_bangun_datar()
-elif kategori == 2:
-    kalkulator_bangun_ruang()
-else:
-    print("Kategori tidak valid!")
+    if kategori == 1:
+        kalkulator_bangun_datar()
+    elif kategori == 2:
+        kalkulator_bangun_ruang()
+    else:
+        print("Kategori tidak valid!")
+except ValueError:
+    print("Input harus berupa angka!")
